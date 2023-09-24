@@ -25,4 +25,8 @@ public class ItemPrice {
         return amount;
     }
 
+    public ItemPrice multi(Quantity qty){
+        return new ItemPrice(currency,amount * qty.getAmount());
+    }
+
 }
