@@ -14,4 +14,7 @@ public class Item {
         return name;
     }
 
+    public ItemPrice getPrice() {
+        return price;
+    }
 }
