@@ -11,7 +11,7 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public Total getTtal(){
+    public Total getTotal(){
         //悪い例　理由＝カプセル化違反
         //int result = this.item.getPrice().getAmount() * this.quantity.getAmount();
         //return new Total(result);
@@ -20,5 +20,6 @@ public class Order {
         ItemPrice price = this.item.getPrice().multi(quantity);
         return new Total(price.getAmount());
     }
+
 
 }
