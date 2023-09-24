@@ -15,6 +15,8 @@ public class Order {
         //悪い例　理由＝カプセル化違反
         //int result = this.item.getPrice().getAmount() * this.quantity.getAmount();
         //return new Total(result);
+
+        //良い例　理由 ItemPriceクラスで小計の計算をしている＝責務の分離ができている
         ItemPrice price = this.item.getPrice().multi(quantity);
         return new Total(price.getAmount());
     }
