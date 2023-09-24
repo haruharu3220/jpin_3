@@ -13,4 +13,7 @@ public class Total {
     }
 
 
+    public Total add(Total target){
+        return new Total(amount + target.amount);
+    }
 }
