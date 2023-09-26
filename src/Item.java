@@ -1,7 +1,11 @@
+import java.util.Map;
+
 public class Item {
     private  ItemName name;
     private  ItemPrice price;
     private Quantity limitQuantity;
+
+    private Map<Quantity,ItemPrice> bundleSalePrice;
 
     public Item(ItemName name, ItemPrice price, Quantity limitQuantity) {
         super();
@@ -26,9 +30,14 @@ public class Item {
         return limitQuantity;
     }
     //★宿題★購入上限値判定
-    public boolean isPurchasePossible(int qty){
-        if(qty <= limitQuantity.getAmount()) return true;
+    public boolean isPurchasePossible(Quantity qty){
+        if(qty.getAmount() <= limitQuantity.getAmount()) return true;
         return false;
+    }
+
+    //★宿題★まとめ売り価格判定
+    public ItemPrice getBundleSalePrice(Quantity qty){
+        return bundleSalePrice.get(qty);
     }
 
 }
