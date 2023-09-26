@@ -5,10 +5,14 @@ public class Order {
     public Order(Item item, Quantity quantity) {
         super();
         if(item == null ) throw  new IllegalArgumentException();
-        if(quantity == null)    throw   new IllegalArgumentException();
+        if(quantity == null || quantity.getAmount() > item.getLimitQuantity().getQuantity())    throw   new IllegalArgumentException();
+
+        //★宿題★購入上限値を超えたら例外を吐く
+        if(!item.isPurchasePossible(quantity.getAmount())) throw new IllegalArgumentException();
 
         this.item = item;
         this.quantity = quantity;
+
     }
 
     public Total getTotal(){
