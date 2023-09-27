@@ -8,13 +8,16 @@ public class Order {
         if(item == null ) throw  new IllegalArgumentException();
         if(quantity == null || quantity.getAmount() > item.getLimitQuantity().getAmount())    throw   new IllegalArgumentException();
 
-        //★宿題★購入上限値を超えたら例外を吐く
-        if(!item.isPurchasePossible(quantity)) throw new IllegalArgumentException();
-
         this.item = item;
         this.quantity = quantity;
-
     }
+
+    public Order(Item item, Quantity quantity, QuantityLimit limit) throws LimitOverException{
+        this(item, quantity);
+        limit.check(this);
+    }
+
+
 
     public Total getTotal() {
         //悪い例　理由＝カプセル化違反
@@ -37,6 +40,7 @@ public class Order {
     }
 
     public boolean isLessThan(Order target){
+        //この注文の商品と引数の商品が一致しているかチェック
         if(this.item.equals(target.item) == false){
             return false;
         }

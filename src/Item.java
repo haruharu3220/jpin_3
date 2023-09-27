@@ -10,7 +10,7 @@ public class Item {
 
     private Map<Quantity,ItemPrice> bundleSalePrice;
 
-    public Item(ItemName name, ItemPrice price, Quantity limitQuantity) {
+    public Item(ItemName name, ItemPrice price) {
         super();
         if(name == null || price == null) throw new IllegalArgumentException();
 
