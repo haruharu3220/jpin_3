@@ -2,6 +2,7 @@ public class Order {
     private final Item item;
     private final Quantity quantity;
 
+
     public Order(Item item, Quantity quantity) {
         super();
         if(item == null ) throw  new IllegalArgumentException();
@@ -15,7 +16,7 @@ public class Order {
 
     }
 
-    public Total getTotal(){
+    public Total getTotal() {
         //悪い例　理由＝カプセル化違反
         //int result = this.item.getPrice().getAmount() * this.quantity.getAmount();
         //return new Total(result);
@@ -23,14 +24,27 @@ public class Order {
         //良い例　理由 ItemPriceクラスで小計の計算をしている＝責務の分離ができている
 
         //★宿題★　まとめ売り価格が設定されていなければ、値段×個数
-        if(item.getBundleSalePrice(quantity)==null) {
-            ItemPrice price = this.item.getPrice().multi(quantity);
-            return new Total(price.getAmount());
-        }else {
-            ItemPrice price = item.getBundleSalePrice(quantity);
-            return new Total(price.getAmount());
-        }
+//        if(item.getBundleSalePrice(quantity) == null) {
+//            ItemPrice price = this.item.getPrice().multi(quantity);
+//            return new Total(price.getAmount());
+//        }else {
+//            ItemPrice price = item.getBundleSalePrice(quantity);
+//            return new Total(price.getAmount());
+//        }
+
+        ItemPrice price = this.item.getPrice().multi(quantity);
+        return new Total(price.getAmount());
     }
 
+    public boolean isLessThan(Order target){
+        if(this.item.equals(target.item) == false){
+            return false;
+        }
+        return this.quantity.isLessThan(target.quantity);
+    }
+
+    public boolean isMoreThan(Order target){
+        return false;
+    }
 
 }
