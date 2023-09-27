@@ -3,8 +3,9 @@ public class QuantityLimit {
     private Order limit;
     private QuantityLimit next;
 
-    private LocalDate start;
-    private LocalDate end;
+ // 以下は今回の講義では検討のスコープから外す
+ //    private LocalDate start;
+ //    private LocalDate end;
 
     public QuantityLimit(Item item, Quantity quantity) {
         this.limit = new Order(item,quantity);

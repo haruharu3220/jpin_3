@@ -47,8 +47,11 @@ public class Order {
         return this.quantity.isLessThan(target.quantity);
     }
 
-    public boolean isMoreThan(Order target){
-        return false;
+    public Order add(Order order) throws LimitOverException {
+        if (this.item.equals(order.item) == false) {
+            throw new IllegalArgumentException();
+        }
+        return OrderFactory.create(item, quantity.add(order.quantity));
     }
 
 }
